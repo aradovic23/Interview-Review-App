@@ -1,7 +1,13 @@
 import React from "react";
 import "./Login.scss";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
+  const history = useHistory();
+  const handleLogin = () => {
+    history.push("/admin");
+  };
+
   return (
     <section className="login-section">
       <div className="login-form">
@@ -11,7 +17,9 @@ const Login = () => {
           <input type="text" name="" id="" />
           <span>password</span>
           <input type="password" name="" id="" />
-          <button id="login-id">Log in</button>
+          <button id="login-id" onClick={handleLogin}>
+            Log in
+          </button>
         </div>
       </div>
     </section>
