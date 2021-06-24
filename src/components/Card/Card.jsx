@@ -2,7 +2,6 @@ import React from "react";
 import "./Card.scss";
 import { MdMailOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
-import profile from "../../img/profile.jpg";
 
 const Card = ({ candidates }) => {
   return (
@@ -10,7 +9,7 @@ const Card = ({ candidates }) => {
       {candidates.map((e) => (
         <div className="person-container" key={e.id}>
           <Link to={`${`candidate/`}${e.id}`}>
-            <img src={profile} alt="no-img" />
+            <img src={e.avatar} alt="no-img" />
           </Link>
           <h4>{e.name}</h4>
           <div className="mail">
