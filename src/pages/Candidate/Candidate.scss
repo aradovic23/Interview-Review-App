@@ -16,10 +16,19 @@ $white: #fefefe;
   background-color: $teal;
   height: 400px;
   width: 50%;
+  border-radius: 10px;
 
   .candidate-data {
-    padding-left: 20px;
     font-size: 20px;
+    margin: 20px auto;
+    border: 0.5px solid $dark-blue;
+    border-radius: 10px;
+    padding: 15px;
+  }
+
+  img{
+    border-radius: 20px;
+    padding: 10px;
   }
 
   span {
