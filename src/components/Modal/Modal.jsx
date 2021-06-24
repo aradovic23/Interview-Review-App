@@ -1,5 +1,7 @@
 import React from "react";
 import "./Modal.scss";
+import { MdClose } from "react-icons/md";
+import profile from "../../img/profile.jpg";
 
 const Modal = (props) => {
   const { show } = props;
@@ -13,25 +15,35 @@ const Modal = (props) => {
       {show === true ? (
         <div className="modal-bg">
           <div className="modal-content">
-            <p>Pera Zmikic</p>
-
             <div className="n-c">
-              <p>company</p>
-              <span>Google</span>
-              <p>date</p>
-              <span>27.03</span>
-              <p>phase</p>
-              <span>HR</span>
-              <p>status</p>
-              <span>Passed</span>
+              <h2>Pera Zmikic</h2>
+              <p>
+                Company:
+                <span> Google</span>
+              </p>
+              <p>
+                Date:
+                <span> 27.03</span>
+              </p>
+              <p>
+                Phase:
+                <span> HR</span>
+              </p>
+              <p>
+                Status:
+                <span> Passed</span>
+              </p>
+              <p id="textarea">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Doloribus dignissimos quae nulla sapiente sint esse amet. Quia,
+                ab nisi incidunt illo vitae et eligendi quibusdam fugit cum?
+                Omnis, placeat vitae!
+              </p>
             </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-              dignissimos quae nulla sapiente sint esse amet. Quia, ab nisi
-              incidunt illo vitae et eligendi quibusdam fugit cum? Omnis,
-              placeat vitae!
-            </p>
-            <button onClick={close}>Close</button>
+            <div className="modal-image">
+              <img src={profile} alt="" />
+            </div>
+            <MdClose onClick={close} size="30px" id="x-icon"></MdClose>
           </div>
         </div>
       ) : (
