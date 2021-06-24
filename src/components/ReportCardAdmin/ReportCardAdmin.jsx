@@ -10,10 +10,14 @@ import Modal from "../Modal/Modal";
 const ReportCardAdmin = ({ reports }) => {
   console.log(reports);
   const [show, setShow] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('')
+
 
   const onClick = () => {
     setShow(!show);
   };
+
+  
 
   return (
     <>
@@ -23,7 +27,9 @@ const ReportCardAdmin = ({ reports }) => {
             type="search"
             name="search"
             id="search-admin"
-            placeholder="Search for companies and candidates"
+            placeholder="Search for companies and candidates" onChange={(event)=>{
+              setSearchTerm(event.target.value);
+            }}
           />
           <button id="admin-search-button">
             <MdSearch size="24px" />
@@ -31,7 +37,17 @@ const ReportCardAdmin = ({ reports }) => {
         </div>
       </section>
       <section>
-        {reports.map((e) => (
+        {reports.filter((value)=>{
+
+if (searchTerm == ''){
+  return value 
+} else if (value.candidateName.toLowerCase().includes(searchTerm.toLowerCase())) {
+  return value
+} else if (value.companyName.toLowerCase().includes(searchTerm.toLowerCase())){
+  return value
+}
+
+}).map((e) => (
           <div className="report-container" key={e.id} id={e.id}>
             <div className="report-wrapper">
               <div className="admin-card-data">
