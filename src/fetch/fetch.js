@@ -18,5 +18,13 @@
   return  fetch('http://localhost:3333/api/candidates')
   .then((res) => res.json())
  }
+ const getReports = () => {
+  return  fetch('http://localhost:3333/api/reports')
+  .then((res) => res.json())
+ }
 
- export {getCandidates}
+
+
+
+
+ export {getCandidates, getReports}

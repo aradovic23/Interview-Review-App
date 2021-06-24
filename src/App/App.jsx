@@ -1,7 +1,7 @@
 import "./App.scss";
 import { Switch, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getCandidates } from "../fetch/fetch";
+import { getCandidates, getReports } from "../fetch/fetch";
 import Home from "../pages/Home/Home";
 import Candidate from "../pages/Candidate/Candidate";
 import Login from "../pages/Login/Login";
@@ -10,6 +10,7 @@ import Wizard from "../pages/Wizard/Wizard";
 
 function App() {
   const [candidates, setCandidates] = useState([]);
+  const [reports, setReports] = useState([]);
 
   useEffect(() => {
     getCandidates().then((data) => {
@@ -17,7 +18,12 @@ function App() {
     });
   }, []);
 
-  console.log(candidates)
+  useEffect(() => {
+    getReports().then((data) => {
+      setReports(data);
+    });
+  }, []);
+
   return (
     <div className="App">
       <Switch>
@@ -36,7 +42,7 @@ function App() {
         </Route>
 
         <Route path="/admin">
-          <Admin></Admin>
+          <Admin reports={reports}></Admin>
         </Route>
 
         <Route path="/wizard">

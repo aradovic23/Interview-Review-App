@@ -1,0 +1,85 @@
+// colors
+$dark-blue: #101820;
+$teal: #30d3ad;
+$white: #fefefe;
+
+.search-holder {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 80%;
+  .search-admin {
+    display: flex;
+    justify-content: center;
+
+    #search-admin {
+      width: 50%;
+      height: 35px;
+      border-radius: 5px 0 0 5px;
+      border: 2px solid #ccc;
+      border-right: none;
+      &::placeholder {
+        padding-left: 15px;
+        color: #ccc;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    #admin-search-button {
+      background-color: $teal;
+      border: none;
+      width: 50px;
+      border-radius: 0 5px 5px 0;
+      &:active {
+        background-color: #5badad;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.report-container {
+  background-color: $white;
+  width: 80%;
+  margin: 15px;
+  display: flex;
+  padding: 15px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  text-align: left;
+
+  .report-wrapper {
+    display: flex;
+    span {
+      color: $dark-blue;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    p {
+      margin: 0;
+      font-size: 12px;
+    }
+    .admin-card-data {
+      width: 235px;
+    }
+  }
+
+  .admin-modal {
+    width: 50px;
+  }
+
+  .icons-admin {
+    color: $dark-blue;
+    &:hover {
+      color: $teal;
+      cursor: pointer;
+    }
+  }
+}
