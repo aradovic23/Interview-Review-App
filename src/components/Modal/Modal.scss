@@ -36,11 +36,24 @@ $white: #fefefe;
 
       #textarea {
         text-align: center;
+        width: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        &::-webkit-scrollbar {
+          width: 10px;
+          background: $dark-blue;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: $teal;
+          border: 2px solid #27967c;
+        }
       }
 
       span {
         font-weight: bold;
         color: $teal;
+        text-transform: uppercase;
       }
     }
 
@@ -56,6 +69,7 @@ $white: #fefefe;
   #x-icon {
     color: $dark-blue;
     position: absolute;
+    margin: 10px;
 
     &:hover {
       color: $teal;

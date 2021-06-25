@@ -1,46 +1,38 @@
 import React from "react";
-import "./Modal.scss";
+import "./ModalAdmin.scss";
 import { MdClose } from "react-icons/md";
 import profile from "../../img/profile.jpg";
 
-const Modal = (props) => {
-  const { show } = props;
-  const { isClosed } = props;
-  const { prospectReport } = props;
-
-  console.log(prospectReport);
-
+const ModalAdmin = ({ show, isClosed, company, date, phase, status, note }) => {
   const close = () => {
     isClosed(true);
   };
 
-  if (!prospectReport) {
-    return null;
-  }
+  //   const adminProspects = reports.find((e) => e.candidateId == elementId);
   return (
     <>
       {show === true ? (
         <div className="modal-bg">
           <div className="modal-content">
             <div className="n-c">
-              <h2>{prospectReport.candidateName}</h2>
+              <h2>Name</h2>
               <p>
                 Company:
-                <span> {prospectReport.companyName} </span>
+                <span> {company} </span>
               </p>
               <p>
                 Date:
-                <span> {prospectReport.interviewDate.slice(4, 16)}</span>
+                <span> {date.slice(4, 16)}</span>
               </p>
               <p>
                 Phase:
-                <span> {prospectReport.phase.toUpperCase()}</span>
+                <span> {phase}</span>
               </p>
               <p>
                 Status:
-                <span> {prospectReport.status.toUpperCase()}</span>
+                <span> {status}</span>
               </p>
-              <p id="textarea">{prospectReport.note}</p>
+              <p id="textarea">{note}</p>
             </div>
             <div className="modal-image">
               <img src={profile} alt="" />
@@ -55,4 +47,4 @@ const Modal = (props) => {
   );
 };
 
-export default Modal;
+export default ModalAdmin;

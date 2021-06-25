@@ -1,23 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ReportCardAdmin.scss";
 import { MdSearch } from "react-icons/md";
-import { MdInfo } from "react-icons/md";
-import { IoTrashOutline } from "react-icons/io5";
-
-import { useState } from "react";
-import Modal from "../Modal/Modal";
+import TableRow from "../TableRow/TableRow";
 
 const ReportCardAdmin = ({ reports }) => {
-  console.log(reports);
-  const [show, setShow] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('')
-
-
-  const onClick = () => {
-    setShow(!show);
-  };
-
-  
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <>
@@ -27,7 +14,8 @@ const ReportCardAdmin = ({ reports }) => {
             type="search"
             name="search"
             id="search-admin"
-            placeholder="Search for companies and candidates" onChange={(event)=>{
+            placeholder="Search for companies and candidates"
+            onChange={(event) => {
               setSearchTerm(event.target.value);
             }}
           />
@@ -37,48 +25,35 @@ const ReportCardAdmin = ({ reports }) => {
         </div>
       </section>
       <section>
-        {reports.filter((value)=>{
-
-if (searchTerm == ''){
-  return value 
-} else if (value.candidateName.toLowerCase().includes(searchTerm.toLowerCase())) {
-  return value
-} else if (value.companyName.toLowerCase().includes(searchTerm.toLowerCase())){
-  return value
-}
-
-}).map((e) => (
-          <div className="report-container" key={e.id} id={e.id}>
-            <div className="report-wrapper">
-              <div className="admin-card-data">
-                <p>Candidate</p>
-                <span>{e.candidateName}</span>
-              </div>
-              <div className="admin-card-data">
-                <p>Company</p>
-                <span> {e.companyName}</span>
-              </div>
-              <div className="admin-card-data">
-                <p>Date</p>
-                <span>{e.interviewDate.slice(4, 16)}</span>
-              </div>
-              <div className="admin-card-data">
-                <p>Phase</p>
-                <span>{e.phase}</span>
-              </div>
-              <div className="admin-card-data">
-                <p>Status</p>
-                <span>{e.status}</span>
-              </div>
-            </div>
-            <div id="admin-modal">
-              <MdInfo size="24px" onClick={onClick} className="icons-admin" />
-              <Modal show={show} isClosed={(arg) => setShow(!arg)} />
-
-              <IoTrashOutline size="24px" className="icons-admin" />
-            </div>
-          </div>
-        ))}
+        {reports
+          // eslint-disable-next-line array-callback-return
+          .filter((value) => {
+            if (searchTerm === "") {
+              return value;
+            } else if (
+              value.candidateName
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+            ) {
+              return value;
+            } else if (
+              value.companyName
+                ?.toLowerCase()
+                .includes(searchTerm.toLowerCase())
+            ) {
+              return value;
+            }
+          })
+          .map((e) => (
+            <TableRow
+              name={e.candidateName}
+              company={e.companyName}
+              date={e.interviewDate}
+              phase={e.phase}
+              status={e.status}
+              note={e.note}
+            />
+          ))}
       </section>
     </>
   );

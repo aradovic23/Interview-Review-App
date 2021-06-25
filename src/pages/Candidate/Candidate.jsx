@@ -5,23 +5,18 @@ import ReportCard from "../../components/ReportCard/ReportCard";
 import profile from "../../img/profile.jpg";
 import { useParams } from "react-router-dom";
 
-const Candidate = ({ candidates }) => {
-  console.log(candidates);
-
+const Candidate = ({ candidates, reports }) => {
   const { id } = useParams();
   const prospect = candidates.find((e) => e.id === parseInt(id));
-  console.log('prosepect:', prospect);
-
 
   if (!prospect) {
-    return null
+    return null;
   }
 
   return (
     <>
       <Header />
       <div className="candidate-wrapper">
-
         <div className="candidate-info">
           <img src={profile} alt="no-img" />
           <div className="candidate-data">
@@ -30,15 +25,14 @@ const Candidate = ({ candidates }) => {
             <p className="data-title">Education:</p>
             <span>{prospect.education}</span>
             <p className="data-title">Email:</p>
-            <span>{prospect.email}</span>
+            <span>{prospect.email.toLowerCase()}</span>
             <p className="data-title">Birthday:</p>
             <span>{prospect.birthday.slice(4, 16)}</span>
           </div>
         </div>
-
       </div>
       <div>
-        <ReportCard />
+        <ReportCard reports={reports} id={id} />
       </div>
     </>
   );

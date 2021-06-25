@@ -1,23 +1,53 @@
+// colors
+$dark-blue: #101820;
+$teal: #30d3ad;
+$white: #fefefe;
+
 .candidates-report {
   width: 100%;
   .report-card {
     margin-left: 20%;
     margin-bottom: 30px;
-    background-color: rgb(141, 42, 42);
+    background-color: $dark-blue;
     border-radius: 10px;
     width: 60%;
     height: 100px;
     display: flex;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    align-items: center;
 
-    .company,
-    .interview-date,
-    .status {
+    .card-data {
       width: 30%;
       text-align: center;
+      color: $white;
+    }
+
+    .card-data > span {
+      text-transform: uppercase;
+      font-size: 20px;
+    }
+
+    .card-data > p {
+      margin-bottom: 0;
+      margin-top: 0;
+      font-size: 14px;
     }
 
     .modulo-link {
       width: 10%;
+      display: flex;
+      align-items: center;
+    }
+
+    .info-button-report {
+      color: $white;
+      font-size: 40px;
+
+      &:hover {
+        color: $teal;
+        cursor: pointer;
+      }
     }
   }
 }

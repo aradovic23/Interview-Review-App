@@ -2,9 +2,19 @@ import React from "react";
 import "./ReportCard.scss";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
+import { MdInfo } from "react-icons/md";
 
-const ReportCard = () => {
+const ReportCard = ({ id, reports }) => {
   const [show, setShow] = useState(false);
+
+  const userId = id;
+
+  // eslint-disable-next-line eqeqeq
+  const prospectReport = reports.find((e) => e.candidateId == userId);
+
+  if (!prospectReport) {
+    return null;
+  }
 
   const onClick = () => {
     setShow(!show);
@@ -13,21 +23,26 @@ const ReportCard = () => {
   return (
     <section className="candidates-report">
       <div className="report-card">
-        <div className="company">
+        <div className="card-data">
           <p>Company:</p>
-          <span>Google</span>
+          <span>{prospectReport.companyName}</span>
         </div>
-        <div className="interview-date">
+        <div className="card-data">
           <p>Interview Date:</p>
-          <span>Google</span>
+          <span>{prospectReport.interviewDate.slice(4, 16)}</span>
         </div>
-        <div className="status">
+        <div className="card-data">
           <p>Status:</p>
-          <span>Google</span>
+          <span>{prospectReport.status}</span>
         </div>
         <div className="modulo-link">
-          <button onClick={onClick}>klikni</button>
-          <Modal show={show} isClosed={(arg) => setShow(!arg)} />
+          <MdInfo onClick={onClick} className="info-button-report" />
+          <Modal
+            prospectReport={prospectReport}
+            userId={userId}
+            show={show}
+            isClosed={(arg) => setShow(!arg)}
+          />
         </div>
       </div>
     </section>

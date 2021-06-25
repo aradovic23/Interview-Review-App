@@ -31,7 +31,7 @@ function App() {
           <Home candidates={candidates} />
         </Route>
         <Route path="/candidate/:id">
-          <Candidate candidates={candidates} />
+          <Candidate candidates={candidates} reports={reports} />
         </Route>
         <Route
           path="/character/:id"

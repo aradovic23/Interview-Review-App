@@ -14,9 +14,9 @@ const Login = () => {
         <h2>Admin Login</h2>
         <div className="login-content">
           <span>Username</span>
-          <input type="text" name="" id="" />
+          <input type="text" name="" id="username" />
           <span>password</span>
-          <input type="password" name="" id="" />
+          <input type="password" name="" id="password" />
           <button id="login-id" onClick={handleLogin}>
             Log in
           </button>
