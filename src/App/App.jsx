@@ -17,6 +17,7 @@ function App() {
     });
   }, []);
 
+  console.log(candidates)
   return (
     <div className="App">
       <Switch>

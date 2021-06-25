@@ -10,25 +10,32 @@ const Candidate = ({ candidates }) => {
 
   const { id } = useParams();
   const prospect = candidates.find((e) => e.id === parseInt(id));
-  console.log(prospect);
+  console.log('prosepect:', prospect);
+
+
+  if (!prospect) {
+    return null
+  }
 
   return (
     <>
       <Header />
       <div className="candidate-wrapper">
+
         <div className="candidate-info">
           <img src={profile} alt="no-img" />
           <div className="candidate-data">
-            <p className="data-title">Name</p>
-            <span>Pera Zmikic</span>
-            <p className="data-title">School</p>
-            <span>BIT</span>
-            <p className="data-title">Email</p>
-            <span>pera.zmikic@gmail.com</span>
-            <p className="data-title">Birthday</p>
-            <span>15.08.1997.</span>
+            <p className="data-title">Name:</p>
+            <span>{prospect.name}</span>
+            <p className="data-title">Education:</p>
+            <span>{prospect.education}</span>
+            <p className="data-title">Email:</p>
+            <span>{prospect.email}</span>
+            <p className="data-title">Birthday:</p>
+            <span>{prospect.birthday.slice(4, 16)}</span>
           </div>
         </div>
+
       </div>
       <div>
         <ReportCard />
