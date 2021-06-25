@@ -2,6 +2,8 @@ import React from "react";
 import "./Admin.scss";
 import Header from "../../components/Header/Header";
 import ReportCardAdmin from "../../components/ReportCardAdmin/ReportCardAdmin";
+import { MdAddCircle } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Admin = ({ reports }) => {
   return (
@@ -9,6 +11,12 @@ const Admin = ({ reports }) => {
       <Header />
       <div className="wrapper">
         <ReportCardAdmin reports={reports} />
+        <div className="add">
+          <Link to="/wizard">
+            {" "}
+            <MdAddCircle className="add-report" />
+          </Link>
+        </div>
       </div>
     </>
   );
