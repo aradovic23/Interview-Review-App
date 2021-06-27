@@ -1,0 +1,22 @@
+.wizard-candidates{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+
+
+    .candidate-wizard-card{
+        height: 50px;
+        background-color: red;
+        width: 40%;
+        margin: 10px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        
+    }
+}

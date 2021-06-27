@@ -3,7 +3,7 @@ import "./ModalAdmin.scss";
 import { MdClose } from "react-icons/md";
 import profile from "../../img/profile.jpg";
 
-const ModalAdmin = ({ show, isClosed, company, date, phase, status, note }) => {
+const ModalAdmin = ({ show, isClosed, company, date, phase, status, note, name }) => {
   const close = () => {
     isClosed(true);
   };
@@ -15,7 +15,7 @@ const ModalAdmin = ({ show, isClosed, company, date, phase, status, note }) => {
         <div className="modal-bg">
           <div className="modal-content">
             <div className="n-c">
-              <h2>Name</h2>
+              <h2>{name}</h2>
               <p>
                 Company:
                 <span> {company} </span>

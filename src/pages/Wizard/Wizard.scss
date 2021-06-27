@@ -25,10 +25,20 @@ $white: #fefefe;
       padding: 10px;
     }
 
-    #right {
-      width: 70%;
-      background-color: $teal;
-      height: 500px;
-    }
+    // #right {
+    //   width: 70%;
+    //   background-color: $teal;
+    //   height: 500px;
+    // }
+  }
+
+  .form{
+    width: 100%;
+    
+      .wizard-buttons{
+        display: flex;
+        flex-direction: row;
+        margin: 10px;
+      }
   }
 }

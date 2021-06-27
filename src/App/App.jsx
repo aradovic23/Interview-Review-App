@@ -46,7 +46,7 @@ function App() {
         </Route>
 
         <Route path="/wizard">
-          <Wizard></Wizard>
+          <Wizard candidates={candidates}></Wizard>
         </Route>
       </Switch>
     </div>
