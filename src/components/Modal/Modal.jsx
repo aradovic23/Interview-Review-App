@@ -30,7 +30,7 @@ const Modal = (props) => {
               </p>
               <p>
                 Date:
-                <span> {prospectReport.interviewDate.slice(4, 16)}</span>
+                <span> {prospectReport.interviewDate}</span>
               </p>
               <p>
                 Phase:

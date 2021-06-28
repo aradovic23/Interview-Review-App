@@ -23,7 +23,7 @@ const TableRow = ({ name, company, date, phase, status, note }) => {
           </div>
           <div className="admin-card-data">
             <p>Date</p>
-            <span>{date.slice(4, 16)}</span>
+            <span>{date}</span>
           </div>
           <div className="admin-card-data">
             <p>Phase</p>

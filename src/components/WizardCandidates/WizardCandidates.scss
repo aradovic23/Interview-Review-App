@@ -5,7 +5,7 @@ $white: #fefefe;
 
 .candidate-wizard-card {
   height: 100px;
-  background-color: $white;
+  background-color: #f5f5f5;
   width: 45%;
   margin: 10px;
   border-radius: 10px;
@@ -17,7 +17,7 @@ $white: #fefefe;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   &:hover {
-    background-color: #f5f5f5;
+    background-color: #dddcdc;
   }
 
   &:active {

@@ -5,9 +5,23 @@ import WizardCandidates from "../../components/WizardCandidates/WizardCandidates
 import WizardCompanies from "../../components/WizardCompanies/WizardCompanies";
 import WizardForm from "../../components/WizardForm/WizardForm";
 
-const Wizard = ({ candidates, companies, token, setToken }) => {
+const Wizard = ({ candidates, companies, token, setToken, setReports, reports }) => {
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [report, setReport] = useState({})
+
+
+
+
+  console.log(report);
+
+  const getCandidates = (name, id) => {
+    setReport({ ...report, candidateName: name, candidateId: id })
+}
+
+const getCompanies = (companyName, companyId) => {
+  setReport({ ...report, companyName: companyName, companyId: companyId })
+}
 
   const goNextPage = () => {
     setPage((page) => page + 1);
@@ -19,6 +33,17 @@ const Wizard = ({ candidates, companies, token, setToken }) => {
   const getActive = (pg) => {
     return pg === page ? "active" : "";
   };
+
+  const submitForm = () => {
+    fetch('http://localhost:3333/api/reports', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(report)
+    }).then(res => res.json()).then(data => setReports([...reports, data]))
+}
 
   return (
     <>
@@ -60,7 +85,7 @@ const Wizard = ({ candidates, companies, token, setToken }) => {
                     }
                   })
                   .map((e) => (
-                    <WizardCandidates
+                    <WizardCandidates getCandidates={getCandidates}
                       key={e.id}
                       name={e.name}
                       email={e.email}
@@ -78,6 +103,7 @@ const Wizard = ({ candidates, companies, token, setToken }) => {
               <div className="companies-list">
                 {companies.map((e) => (
                   <WizardCompanies
+                  getCompanies={getCompanies}
                     key={e.id}
                     name={e.name}
                     email={e.email}
@@ -93,13 +119,13 @@ const Wizard = ({ candidates, companies, token, setToken }) => {
               <div className="title-wizard">
                 <h2>Write a report</h2>
               </div>
-              <div className="wizard-report">{<WizardForm />}</div>
+              <div className="wizard-report">{<WizardForm setReport={setReport} report={report}/>}</div>
             </div>
           )}
           <div className="wizard-buttons">
             {page !== 3 && <button onClick={goNextPage}>Next</button>}
             {page !== 1 && <button onClick={goBack}>back</button>}
-            {page === 3 && <button>Submit</button>}
+            {page === 3 && <button onClick={submitForm}>Submit</button>}
           </div>
         </div>
       </section>

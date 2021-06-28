@@ -22,7 +22,7 @@ const ModalAdmin = ({ show, isClosed, company, date, phase, status, note, name }
               </p>
               <p>
                 Date:
-                <span> {date.slice(4, 16)}</span>
+                <span> {date}</span>
               </p>
               <p>
                 Phase:

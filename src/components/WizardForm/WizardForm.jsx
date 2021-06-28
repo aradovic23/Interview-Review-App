@@ -3,7 +3,7 @@ import "./WizardForm.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const WizardForm = () => {
+const WizardForm = ({setReport, report}) => {
   const [date, setDate] = useState(Date.now());
 
   return (
@@ -22,7 +22,7 @@ const WizardForm = () => {
 
         <span>
           Select a phase:
-          <select name="phase" id="phase">
+          <select name="phase" id="phase" onClick={(e) => { setReport({ ...report, phase: e.target.value }) }}>
             <option value="hr">HR</option>
             <option value="cv">CV</option>
             <option value="technical">Tech</option>
@@ -31,8 +31,11 @@ const WizardForm = () => {
         </span>
         <span>
           Select a status:
-          <input type="radio" name="status" id="passed" /> Passed
-          <input type="radio" name="status" id="declined" /> Declined
+          <select name="phase" id="phase" onClick={(e) => { setReport({ ...report, status: e.target.value }) }}>
+            <option value="passed">Passed</option>
+            <option value="declined">Declined</option>
+        
+          </select>
         </span>
       </div>
       <div className="textarea">
@@ -41,7 +44,7 @@ const WizardForm = () => {
           id="note"
           cols="70"
           rows="15"
-          placeholder="Write a quick note about the candidate. . ."
+          placeholder="Write a quick note about the candidate. . ." onChange={(e) => setReport({ ...report, note: e.target.value })}
         ></textarea>
       </div>
     </div>

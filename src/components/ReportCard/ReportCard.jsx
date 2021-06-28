@@ -29,7 +29,7 @@ const ReportCard = ({ id, reports }) => {
         </div>
         <div className="card-data">
           <p>Interview Date:</p>
-          <span>{prospectReport.interviewDate.slice(4, 16)}</span>
+          <span>{prospectReport.interviewDate}</span>
         </div>
         <div className="card-data">
           <p>Status:</p>

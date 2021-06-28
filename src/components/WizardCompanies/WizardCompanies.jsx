@@ -1,11 +1,13 @@
 import React from "react";
 import "./WizardCompanies.scss";
 
-const WizardCompanies = ({ name, email, id }) => {
+const WizardCompanies = ({ name, getCompanies, id }) => {
   return (
-    <div className="select-company">
-      <input type="radio" name="companies" id={id} />
-      {name}
+    <div className="select-company" onClick={() => {
+      getCompanies(name, id)}}>
+      <div>
+<span> {name.toUpperCase()}</span>     
+      </div>
     </div>
   );
 };

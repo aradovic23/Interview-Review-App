@@ -12,6 +12,7 @@ function App() {
   const [candidates, setCandidates] = useState([]);
   const [reports, setReports] = useState([]);
   const [companies, setCompanies] = useState([]);
+
   let tokenNew = localStorage.getItem("token");
   const [token, setToken] = useState(tokenNew);
 
@@ -31,6 +32,12 @@ function App() {
     getCompanies().then((data) => {
       setCompanies(data);
     });
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:3333/api/reports")
+      .then((res) => res.json())
+      .then((data) => setReports(data));
   }, []);
 
   return (
@@ -81,6 +88,8 @@ function App() {
               token={token}
               setToken={setToken}
               companies={companies}
+              setReports={setReports}
+              reports={reports}
             ></Wizard>
           ) : (
             <Redirect to="/login" />
