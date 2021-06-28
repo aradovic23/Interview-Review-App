@@ -1,24 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.scss";
-import { useHistory } from "react-router-dom";
+import { getToken } from "../../fetch/fetch";
+import { SiWebmoney } from "react-icons/si";
+import { Link } from "react-router-dom";
 
-const Login = () => {
-  const history = useHistory();
+const Login = ({ setToken }) => {
+  const [password, setPassword] = useState("");
+  const [userN, setUserN] = useState("");
+
   const handleLogin = () => {
-    history.push("/admin");
+    getToken(userN, password).then((data) => {
+      setToken(data.accessToken);
+      localStorage.setItem("token", data.accessToken);
+    });
   };
 
   return (
     <section className="login-section">
       <div className="login-form">
+        <div className="logo-section">
+          <Link to="/">
+            <SiWebmoney className="logo-admin" />
+          </Link>
+        </div>
         <h2>Admin Login</h2>
         <div className="login-content">
-          <span>Username</span>
-          <input type="text" name="" id="username" />
-          <span>password</span>
-          <input type="password" name="" id="password" />
+          <span>Email</span>
+          <input
+            type="text"
+            name=""
+            id="username"
+            onChange={(e) => setUserN(e.target.value)}
+          />
+          <span>Password</span>
+          <input
+            type="password"
+            name=""
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
           <button id="login-id" onClick={handleLogin}>
-            Log in
+            Log In
           </button>
         </div>
       </div>

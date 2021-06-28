@@ -5,7 +5,7 @@ $white: #fefefe;
 
 .login-section {
   height: 100vh;
-  background-color: $teal;
+  background-image: linear-gradient(to bottom right, $teal, $dark-blue);
   width: 100%;
   display: flex;
   align-items: center;
@@ -13,12 +13,14 @@ $white: #fefefe;
 
   .login-form {
     background-color: $white;
-    height: 500px;
-    width: 30%;
+    height: 600px;
+    width: 25%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .login-form > h2 {
@@ -34,22 +36,37 @@ $white: #fefefe;
   }
 
   #login-id {
-    background-color: $teal;
+    background-image: linear-gradient(to bottom right, $teal, #458173);
     width: 50%;
     margin-top: 10px;
     height: 30px;
     border-radius: 10px;
     border: none;
+    font-weight: bold;
   }
 
   input {
     width: 50%;
     height: 30px;
     border-radius: 10px;
+    border: 1px solid #ccc;
+    &:focus {
+      outline: none;
+    }
   }
 
   h2 {
     margin: 0;
     color: $dark-blue;
+  }
+}
+.logo-section {
+  display: flex;
+  justify-content: center;
+  .logo-admin {
+    font-size: 60px;
+    text-align: center;
+    color: $dark-blue;
+    margin-bottom: 15px;
   }
 }

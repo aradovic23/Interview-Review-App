@@ -34,7 +34,13 @@ $white: #fefefe;
     }
   }
 
-  #log-in-button {
+  .button-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-buttons {
     background-color: $white;
     border: none;
     height: 30px;
@@ -48,4 +54,8 @@ $white: #fefefe;
       background-color: $teal;
     }
   }
+}
+
+#hello {
+  margin-right: 15px;
 }

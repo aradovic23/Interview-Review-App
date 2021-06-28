@@ -5,7 +5,7 @@ import ReportCard from "../../components/ReportCard/ReportCard";
 import profile from "../../img/profile.jpg";
 import { useParams } from "react-router-dom";
 
-const Candidate = ({ candidates, reports }) => {
+const Candidate = ({ candidates, reports, token, setToken }) => {
   const { id } = useParams();
   const prospect = candidates.find((e) => e.id === parseInt(id));
 
@@ -15,7 +15,7 @@ const Candidate = ({ candidates, reports }) => {
 
   return (
     <>
-      <Header />
+      <Header token={token} setToken={setToken} />
       <div className="candidate-wrapper">
         <div className="candidate-info">
           <img src={profile} alt="no-img" />

@@ -1,0 +1,28 @@
+.report-form {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2%;
+  width: 100%;
+
+  .textarea {
+    margin-top: 5%;
+    textarea {
+      width: 100%;
+      font-family: "Poppins", sans-serif;
+      border-radius: 10px;
+
+      &::placeholder {
+        opacity: 0.4;
+        padding: 5px;
+      }
+    }
+  }
+  select,
+  input {
+    margin-left: 1%;
+  }
+}
+
+.react-datepicker__input-container input {
+  width: 50%;
+}

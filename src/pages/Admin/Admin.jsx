@@ -5,15 +5,14 @@ import ReportCardAdmin from "../../components/ReportCardAdmin/ReportCardAdmin";
 import { MdAddCircle } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const Admin = ({ reports }) => {
+const Admin = ({ reports, token, setToken }) => {
   return (
     <>
-      <Header />
+      <Header token={token} setToken={setToken} />
       <div className="wrapper">
         <ReportCardAdmin reports={reports} />
         <div className="add">
           <Link to="/wizard">
-            {" "}
             <MdAddCircle className="add-report" />
           </Link>
         </div>

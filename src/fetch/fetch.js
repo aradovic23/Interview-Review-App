@@ -1,18 +1,3 @@
-// const data = {
-//     email: "dev@dev.com",
-//     password: "developer",
-//   };
-
-//   fetch("http://localhost:3333/login", {
-//       method: "POST",
-//       body: JSON.stringify(data),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     })
-//       .then((response) => response.json())
-//       .then((data) => console.log(data.accessToken));
-  
 
  const getCandidates = () => {
   return  fetch('http://localhost:3333/api/candidates')
@@ -22,9 +7,27 @@
   return  fetch('http://localhost:3333/api/reports')
   .then((res) => res.json())
  }
+ const getCompanies = () => {
+  return  fetch('http://localhost:3333/api/companies')
+  .then((res) => res.json())
+ }
+
+ const getToken = (email, password) =>{
+     return fetch ('http://localhost:3333/login',{
+         method: 'POST',
+         headers: {
+             "Content-Type" : 'application/json'
+         },
+         body: JSON.stringify({
+             email: email,
+             password: password,
+         })
+     })
+     .then(data => data.json())
+ }
 
 
 
 
 
- export {getCandidates, getReports}
+ export {getCandidates, getReports, getCompanies, getToken}

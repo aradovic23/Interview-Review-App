@@ -27,16 +27,7 @@ const ReportCardAdmin = ({ reports }) => {
       <section>
         {reports
           // eslint-disable-next-line array-callback-return
-          .filter((value) => {
-            if (searchTerm === "") {
-              return value;
-            } else if (
-              value.candidateName
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
-            ) {
-              return value;
-            } else if (
+          .filter((value) => {if (searchTerm === "") {return value;} else if (value.candidateName.toLowerCase().includes(searchTerm.toLowerCase())) {return value;} else if (
               value.companyName
                 ?.toLowerCase()
                 .includes(searchTerm.toLowerCase())
