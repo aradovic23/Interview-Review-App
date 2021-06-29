@@ -4,14 +4,16 @@ import { getToken } from "../../fetch/fetch";
 import { SiWebmoney } from "react-icons/si";
 import { Link } from "react-router-dom";
 
-const Login = ({ setToken }) => {
+const Login = ({ setToken, token }) => {
   const [password, setPassword] = useState("");
   const [userN, setUserN] = useState("");
+  const [error, setError] = useState(false);
 
   const handleLogin = () => {
     getToken(userN, password).then((data) => {
       setToken(data.accessToken);
       localStorage.setItem("token", data.accessToken);
+      setError(true);
     });
   };
 
@@ -39,6 +41,7 @@ const Login = ({ setToken }) => {
             id="password"
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error && <p id="error-msg">Wrong email or password</p>}
 
           <button id="login-id" onClick={handleLogin}>
             Log In

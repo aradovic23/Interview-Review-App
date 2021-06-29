@@ -27,12 +27,18 @@ $white: #fefefe;
       background-color: $dark-blue;
       height: 500px;
       color: $white;
-      padding: 20px;
-      font-weight: 500;
+      padding-top: 60px;
+      padding-left: 30px;
+      font-weight: 400;
       border-radius: 10px 0 0 10px;
+      font-size: 20px;
 
+      p {
+        margin: 5px;
+      }
       .active {
         color: $teal;
+        font-weight: bold;
       }
     }
   }
@@ -100,6 +106,27 @@ $white: #fefefe;
     }
     &:focus {
       outline: none;
+    }
+  }
+
+  #selected-candidate {
+    margin-top: 50px;
+
+    .selected-title {
+      color: $white;
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .selected-data {
+      color: $teal;
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    #select-company {
+      margin-top: 20px;
     }
   }
 }

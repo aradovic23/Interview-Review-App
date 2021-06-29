@@ -1,12 +1,25 @@
 import React from "react";
 import "./WizardCompanies.scss";
 
-const WizardCompanies = ({ name, getCompanies, id }) => {
+const WizardCompanies = ({
+  name,
+  getCompanies,
+  id,
+  setActiveCompanyId,
+  activeCompanyId,
+}) => {
   return (
-    <div className="select-company" onClick={() => {
-      getCompanies(name, id)}}>
+    <div
+      className={
+        activeCompanyId === id ? "select-company active-card" : "select-company"
+      }
+      onClick={() => {
+        getCompanies(name, id);
+        setActiveCompanyId(id);
+      }}
+    >
       <div>
-<span> {name.toUpperCase()}</span>     
+        <span> {name.toUpperCase()}</span>
       </div>
     </div>
   );

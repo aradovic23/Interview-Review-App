@@ -4,24 +4,30 @@ import Header from "../../components/Header/Header";
 import WizardCandidates from "../../components/WizardCandidates/WizardCandidates";
 import WizardCompanies from "../../components/WizardCompanies/WizardCompanies";
 import WizardForm from "../../components/WizardForm/WizardForm";
+import { Link } from "react-router-dom";
 
-const Wizard = ({ candidates, companies, token, setToken, setReports, reports }) => {
+const Wizard = ({
+  candidates,
+  companies,
+  token,
+  setToken,
+  setReports,
+  reports,
+}) => {
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [report, setReport] = useState({})
-
-
-
-
-  console.log(report);
+  const [searchTermCompany, setSearchTermCompany] = useState("");
+  const [report, setReport] = useState({});
+  const [activeCandidateId, setActiveCandidateId] = useState(0);
+  const [activeCompanyId, setActiveCompanyId] = useState(0);
 
   const getCandidates = (name, id) => {
-    setReport({ ...report, candidateName: name, candidateId: id })
-}
+    setReport({ ...report, candidateName: name, candidateId: id });
+  };
 
-const getCompanies = (companyName, companyId) => {
-  setReport({ ...report, companyName: companyName, companyId: companyId })
-}
+  const getCompanies = (companyName, companyId) => {
+    setReport({ ...report, companyName: companyName, companyId: companyId });
+  };
 
   const goNextPage = () => {
     setPage((page) => page + 1);
@@ -35,15 +41,17 @@ const getCompanies = (companyName, companyId) => {
   };
 
   const submitForm = () => {
-    fetch('http://localhost:3333/api/reports', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify(report)
-    }).then(res => res.json()).then(data => setReports([...reports, data]))
-}
+    fetch("http://localhost:3333/api/reports", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(report),
+    })
+      .then((res) => res.json())
+      .then((data) => setReports([...reports, data]));
+  };
 
   return (
     <>
@@ -51,9 +59,29 @@ const getCompanies = (companyName, companyId) => {
       <section className="wizard-section">
         <div className="wizard">
           <div id="left">
-            <h3 className={getActive(1)}>1. Candidates</h3>
-            <h3 className={getActive(2)}>2. Companies</h3>
-            <h3 className={getActive(3)}>3. Report</h3>
+            <p className={getActive(1)}>1. Select a candidate</p>
+            <p className={getActive(2)}>2. Select a company</p>
+            <p className={getActive(3)}>3. Write a report</p>
+
+            <div id="selected-candidate">
+              {activeCandidateId ? (
+                <div>
+                  <p className="selected-title">Selected Candidate:</p>
+                  <span className="selected-data">{report.candidateName}</span>
+                </div>
+              ) : (
+                ""
+              )}
+
+              {activeCompanyId ? (
+                <div id="select-company">
+                  <p className="selected-title">Selected Company:</p>
+                  <span className="selected-data">{report.companyName}</span>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
 
           {page === 1 && (
@@ -85,11 +113,14 @@ const getCompanies = (companyName, companyId) => {
                     }
                   })
                   .map((e) => (
-                    <WizardCandidates getCandidates={getCandidates}
+                    <WizardCandidates
+                      getCandidates={getCandidates}
                       key={e.id}
                       name={e.name}
                       email={e.email}
                       id={e.id}
+                      activeCandidateId={activeCandidateId}
+                      setActiveCandidateId={setActiveCandidateId}
                     />
                   ))}
               </div>
@@ -99,17 +130,41 @@ const getCompanies = (companyName, companyId) => {
             <div className="page-width">
               <div className="title-wizard">
                 <h2>Select a company</h2>
+                <input
+                  type="search"
+                  name=""
+                  id="search-candidate"
+                  placeholder="Search for companies... "
+                  onChange={(event) => {
+                    setSearchTermCompany(event.target.value);
+                  }}
+                />
               </div>
               <div className="companies-list">
-                {companies.map((e) => (
-                  <WizardCompanies
-                  getCompanies={getCompanies}
-                    key={e.id}
-                    name={e.name}
-                    email={e.email}
-                    id={e.id}
-                  />
-                ))}
+                {companies
+                  // eslint-disable-next-line array-callback-return
+                  .filter((value) => {
+                    if (searchTermCompany === "") {
+                      return value;
+                    } else if (
+                      value.name
+                        ?.toLowerCase()
+                        .includes(searchTermCompany.toLowerCase())
+                    ) {
+                      return value;
+                    }
+                  })
+                  .map((e) => (
+                    <WizardCompanies
+                      getCompanies={getCompanies}
+                      key={e.id}
+                      name={e.name}
+                      email={e.email}
+                      id={e.id}
+                      activeCompanyId={activeCompanyId}
+                      setActiveCompanyId={setActiveCompanyId}
+                    />
+                  ))}
               </div>
             </div>
           )}
@@ -119,13 +174,21 @@ const getCompanies = (companyName, companyId) => {
               <div className="title-wizard">
                 <h2>Write a report</h2>
               </div>
-              <div className="wizard-report">{<WizardForm setReport={setReport} report={report}/>}</div>
+              <div className="wizard-report">
+                {<WizardForm setReport={setReport} report={report} />}
+              </div>
             </div>
           )}
           <div className="wizard-buttons">
             {page !== 3 && <button onClick={goNextPage}>Next</button>}
             {page !== 1 && <button onClick={goBack}>back</button>}
-            {page === 3 && <button onClick={submitForm}>Submit</button>}
+            {page === 3 && (
+              <>
+                <Link to="/admin">
+                  <button onClick={submitForm}>Submit</button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </section>

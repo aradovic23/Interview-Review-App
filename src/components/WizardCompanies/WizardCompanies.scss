@@ -4,35 +4,39 @@ $teal: #30d3ad;
 $white: #fefefe;
 
 .companies-list {
-  
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   .select-company {
     padding: 10px;
     height: 100px;
-  background-color: #f5f5f5;
-  width: 45%;
-  margin: 10px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  &:hover {
-    background-color: #dddcdc;
-  }
+    background-color: #f5f5f5;
+    width: 45%;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    &:hover {
+      background-color: #dddcdc;
+    }
 
-  &:active {
+    &:active {
+      background-color: $teal;
+    }
+
+    span {
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+  .active-card {
     background-color: $teal;
-  }
-
-  span{
-    font-weight: bold;
-    font-size: 20px;
-  }
-
+    &:hover {
+      background-color: $teal;
+    }
   }
 }

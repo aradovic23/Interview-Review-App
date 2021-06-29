@@ -3,7 +3,7 @@ import "./ReportCardAdmin.scss";
 import { MdSearch } from "react-icons/md";
 import TableRow from "../TableRow/TableRow";
 
-const ReportCardAdmin = ({ reports }) => {
+const ReportCardAdmin = ({ reports, setReports }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
@@ -27,7 +27,16 @@ const ReportCardAdmin = ({ reports }) => {
       <section>
         {reports
           // eslint-disable-next-line array-callback-return
-          .filter((value) => {if (searchTerm === "") {return value;} else if (value.candidateName.toLowerCase().includes(searchTerm.toLowerCase())) {return value;} else if (
+          .filter((value) => {
+            if (searchTerm === "") {
+              return value;
+            } else if (
+              value.candidateName
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+            ) {
+              return value;
+            } else if (
               value.companyName
                 ?.toLowerCase()
                 .includes(searchTerm.toLowerCase())
@@ -43,6 +52,9 @@ const ReportCardAdmin = ({ reports }) => {
               phase={e.phase}
               status={e.status}
               note={e.note}
+              id={e.id}
+              reports={reports}
+              setReports={setReports}
             />
           ))}
       </section>

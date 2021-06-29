@@ -10,7 +10,7 @@ const ReportCard = ({ id, reports }) => {
   const userId = id;
 
   // eslint-disable-next-line eqeqeq
-  const prospectReport = reports.find((e) => e.candidateId == userId);
+  const prospectReport = reports.filter((e) => e.candidateId == userId);
 
   if (!prospectReport) {
     return null;
@@ -20,20 +20,20 @@ const ReportCard = ({ id, reports }) => {
     setShow(!show);
   };
 
-  return (
+  return prospectReport.map((e) => (
     <section className="candidates-report">
-      <div className="report-card">
+      <div className="report-card" key={e.id}>
         <div className="card-data">
           <p>Company:</p>
-          <span>{prospectReport.companyName}</span>
+          <span>{e?.companyName}</span>
         </div>
         <div className="card-data">
           <p>Interview Date:</p>
-          <span>{prospectReport.interviewDate}</span>
+          <span>{e?.interviewDate.slice(4, 16)}</span>
         </div>
         <div className="card-data">
           <p>Status:</p>
-          <span>{prospectReport.status}</span>
+          <span>{e?.status}</span>
         </div>
         <div className="modulo-link">
           <MdInfo onClick={onClick} className="info-button-report" />
@@ -42,11 +42,13 @@ const ReportCard = ({ id, reports }) => {
             userId={userId}
             show={show}
             isClosed={(arg) => setShow(!arg)}
+            id={e.id}
+            reports={reports}
           />
         </div>
       </div>
     </section>
-  );
+  ));
 };
 
 export default ReportCard;

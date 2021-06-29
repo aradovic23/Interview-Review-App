@@ -7,12 +7,14 @@ const Modal = (props) => {
   const { show } = props;
   const { isClosed } = props;
   const { prospectReport } = props;
-
-  console.log(prospectReport);
+  const { id } = props;
+  const { reports } = props;
 
   const close = () => {
     isClosed(true);
   };
+
+  const reportsId = reports.find((e) => e.id === id);
 
   if (!prospectReport) {
     return null;
@@ -23,24 +25,25 @@ const Modal = (props) => {
         <div className="modal-bg">
           <div className="modal-content">
             <div className="n-c">
-              <h2>{prospectReport.candidateName}</h2>
+              <h2>{reportsId.candidateName}</h2>
               <p>
                 Company:
-                <span> {prospectReport.companyName} </span>
+                <span> {reportsId.companyName} </span>
               </p>
               <p>
                 Date:
-                <span> {prospectReport.interviewDate}</span>
+                <span> {reportsId.interviewDate?.slice(4, 16)}</span>
               </p>
               <p>
                 Phase:
-                <span> {prospectReport.phase.toUpperCase()}</span>
+                <span> {reportsId.phase.toUpperCase()}</span>
               </p>
               <p>
                 Status:
-                <span> {prospectReport.status.toUpperCase()}</span>
+                <span> {reportsId.status.toUpperCase()}</span>
               </p>
-              <p id="textarea">{prospectReport.note}</p>
+              Notes:
+              <span id="textarea">{reportsId.note}</span>
             </div>
             <div className="modal-image">
               <img src={profile} alt="" />

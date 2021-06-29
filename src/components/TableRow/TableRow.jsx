@@ -3,12 +3,32 @@ import { MdInfo } from "react-icons/md";
 import { IoTrashOutline } from "react-icons/io5";
 import ModalAdmin from "../ModalAdmin/ModalAdmin";
 
-const TableRow = ({ name, company, date, phase, status, note }) => {
+const TableRow = ({
+  name,
+  company,
+  date,
+  phase,
+  status,
+  note,
+  id,
+  reports,
+  setReports,
+}) => {
   const [show, setShow] = useState(false);
   const onClick = () => {
     setShow(!show);
   };
 
+  const deleteReport = () => {
+    fetch(`http://localhost:3333/api/reports/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setReports([...reports.filter((e) => e.id !== id)]));
+  };
   return (
     <div>
       <div className="report-container">
@@ -23,7 +43,7 @@ const TableRow = ({ name, company, date, phase, status, note }) => {
           </div>
           <div className="admin-card-data">
             <p>Date</p>
-            <span>{date}</span>
+            <span>{date?.slice(4, 16)}</span>
           </div>
           <div className="admin-card-data">
             <p>Phase</p>
@@ -47,7 +67,11 @@ const TableRow = ({ name, company, date, phase, status, note }) => {
             isClosed={(arg) => setShow(!arg)}
           />
 
-          <IoTrashOutline size="24px" className="icons-admin" />
+          <IoTrashOutline
+            size="24px"
+            className="icons-admin"
+            onClick={deleteReport}
+          />
         </div>
       </div>
     </div>

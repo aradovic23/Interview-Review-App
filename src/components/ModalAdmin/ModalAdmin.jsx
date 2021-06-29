@@ -3,7 +3,16 @@ import "./ModalAdmin.scss";
 import { MdClose } from "react-icons/md";
 import profile from "../../img/profile.jpg";
 
-const ModalAdmin = ({ show, isClosed, company, date, phase, status, note, name }) => {
+const ModalAdmin = ({
+  show,
+  isClosed,
+  company,
+  date,
+  phase,
+  status,
+  note,
+  name,
+}) => {
   const close = () => {
     isClosed(true);
   };
@@ -22,7 +31,7 @@ const ModalAdmin = ({ show, isClosed, company, date, phase, status, note, name }
               </p>
               <p>
                 Date:
-                <span> {date}</span>
+                <span> {date?.slice(4, 16)}</span>
               </p>
               <p>
                 Phase:
@@ -32,7 +41,8 @@ const ModalAdmin = ({ show, isClosed, company, date, phase, status, note, name }
                 Status:
                 <span> {status}</span>
               </p>
-              <p id="textarea">{note}</p>
+              Notes:
+              <span id="textarea">{note}</span>
             </div>
             <div className="modal-image">
               <img src={profile} alt="" />

@@ -16,6 +16,7 @@ const Candidate = ({ candidates, reports, token, setToken }) => {
   return (
     <>
       <Header token={token} setToken={setToken} />
+      <h2 id="candidate-title-h2">Candidate {prospect.name}</h2>
       <div className="candidate-wrapper">
         <div className="candidate-info">
           <img src={profile} alt="no-img" />
@@ -32,6 +33,7 @@ const Candidate = ({ candidates, reports, token, setToken }) => {
         </div>
       </div>
       <div>
+        <h2>Past interviews</h2>
         <ReportCard reports={reports} id={id} />
       </div>
     </>
