@@ -86,13 +86,28 @@ $white: #fefefe;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .modal-bg {
     height: 1200px;
     .modal-content {
-      background-color: $white;
+      height: 400px;
+      width: 300px;
+
+      .modal-image {
+        img {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .modal-bg {
+    height: 1200px;
+    .modal-content {
       height: auto;
-      width: 400px;
+      width: 600px;
 
       .modal-image {
         img {
