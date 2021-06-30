@@ -1,7 +1,7 @@
 import React from "react";
 import "./ModalAdmin.scss";
 import { MdClose } from "react-icons/md";
-import profile from "../../img/profile.jpg";
+import modal from "../../img/modal.jpg";
 
 const ModalAdmin = ({
   show,
@@ -17,7 +17,6 @@ const ModalAdmin = ({
     isClosed(true);
   };
 
-  //   const adminProspects = reports.find((e) => e.candidateId == elementId);
   return (
     <>
       {show === true ? (
@@ -45,7 +44,7 @@ const ModalAdmin = ({
               <span id="textarea">{note}</span>
             </div>
             <div className="modal-image">
-              <img src={profile} alt="" />
+              <img src={modal} alt="" />
             </div>
             <MdClose onClick={close} size="30px" id="x-icon"></MdClose>
           </div>

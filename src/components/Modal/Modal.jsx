@@ -1,15 +1,8 @@
 import React from "react";
 import "./Modal.scss";
 import { MdClose } from "react-icons/md";
-import profile from "../../img/profile.jpg";
 
-const Modal = (props) => {
-  const { show } = props;
-  const { isClosed } = props;
-  const { prospectReport } = props;
-  const { id } = props;
-  const { reports } = props;
-
+const Modal = ({ show, isClosed, prospectReport, id, reports, avatar }) => {
   const close = () => {
     isClosed(true);
   };
@@ -46,7 +39,7 @@ const Modal = (props) => {
               <span id="textarea">{reportsId.note}</span>
             </div>
             <div className="modal-image">
-              <img src={profile} alt="" />
+              <img src={avatar} alt="" />
             </div>
             <MdClose onClick={close} size="30px" id="x-icon"></MdClose>
           </div>

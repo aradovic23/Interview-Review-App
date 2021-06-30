@@ -36,7 +36,13 @@ const Home = ({ candidates, token, setToken }) => {
       <section id="wrapper-section">
         <div id="people-container">
           {filtered?.map((e) => (
-            <Card name={e.name} id={e.id} email={e.email} />
+            <Card
+              name={e.name}
+              id={e.id}
+              email={e.email}
+              avatar={e.avatar}
+              key={e.id}
+            />
           ))}
         </div>
       </section>

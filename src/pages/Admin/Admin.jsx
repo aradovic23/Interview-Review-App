@@ -6,7 +6,6 @@ import { MdAddCircle } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const Admin = ({ reports, token, setToken, setReports }) => {
-  console.log(reports);
   return (
     <>
       <Header token={token} setToken={setToken} />

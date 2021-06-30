@@ -2,7 +2,6 @@ import React from "react";
 import "./Candidate.scss";
 import Header from "../../components/Header/Header";
 import ReportCard from "../../components/ReportCard/ReportCard";
-import profile from "../../img/profile.jpg";
 import { useParams } from "react-router-dom";
 
 const Candidate = ({ candidates, reports, token, setToken }) => {
@@ -16,10 +15,12 @@ const Candidate = ({ candidates, reports, token, setToken }) => {
   return (
     <>
       <Header token={token} setToken={setToken} />
-      <h2 id="candidate-title-h2">Candidate {prospect.name}</h2>
+      <h2 id="candidate-title-h2">
+        Candidate <span>{prospect.name}</span>
+      </h2>
       <div className="candidate-wrapper">
         <div className="candidate-info">
-          <img src={profile} alt="no-img" />
+          <img src={prospect.avatar} alt="no-img" />
           <div className="candidate-data">
             <p className="data-title">Name:</p>
             <span>{prospect.name}</span>
@@ -33,8 +34,8 @@ const Candidate = ({ candidates, reports, token, setToken }) => {
         </div>
       </div>
       <div>
-        <h2>Past interviews</h2>
-        <ReportCard reports={reports} id={id} />
+        <h2 id="interview-title">Past interviews</h2>
+        <ReportCard reports={reports} id={id} avatar={prospect.avatar} />
       </div>
     </>
   );

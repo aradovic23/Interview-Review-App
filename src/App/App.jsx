@@ -75,7 +75,12 @@ function App() {
 
         <Route path="/admin">
           {token ? (
-            <Admin reports={reports} token={token} setReports={setReports} setToken={setToken}></Admin>
+            <Admin
+              reports={reports}
+              token={token}
+              setReports={setReports}
+              setToken={setToken}
+            ></Admin>
           ) : (
             <Redirect to="/login" />
           )}

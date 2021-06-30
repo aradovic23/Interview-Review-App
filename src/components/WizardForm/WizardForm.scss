@@ -1,3 +1,7 @@
+// colors
+$dark-blue: #101820;
+$teal: #30d3ad;
+$white: #fefefe;
 .report-form {
   display: flex;
   flex-direction: column;
@@ -44,4 +48,23 @@
 
 #form-status {
   margin-left: 1%;
+}
+
+.react-datepicker {
+  .react-datepicker__header {
+    background-color: $dark-blue;
+
+    .react-datepicker__current-month {
+      color: $white;
+    }
+    .react-datepicker__day-names {
+      .react-datepicker__day-name {
+        color: $white;
+      }
+    }
+  }
+
+  .react-datepicker__day--selected {
+    background-color: $teal;
+  }
 }

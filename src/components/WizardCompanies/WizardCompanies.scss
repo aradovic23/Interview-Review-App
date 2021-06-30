@@ -40,3 +40,11 @@ $white: #fefefe;
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .companies-list {
+    .select-company {
+      width: 97%;
+    }
+  }
+}

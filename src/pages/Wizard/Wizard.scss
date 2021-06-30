@@ -130,3 +130,28 @@ $white: #fefefe;
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .wizard-section {
+    .wizard {
+      h2 {
+        font-size: 30px;
+      }
+      display: inline-block;
+
+      #left {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        padding: 15px;
+      }
+    }
+
+    #search-candidate {
+      width: 97%;
+    }
+  }
+  button {
+    width: 100%;
+  }
+}

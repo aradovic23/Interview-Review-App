@@ -52,3 +52,26 @@ $white: #fefefe;
     }
   }
 }
+.no-reports {
+  p {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .candidates-report {
+    .report-card {
+      margin-left: 0;
+      width: 100%;
+
+      .card-data {
+        span {
+          font-size: 12px;
+        }
+      }
+      .info-button-report {
+        font-size: 33px;
+      }
+    }
+  }
+}

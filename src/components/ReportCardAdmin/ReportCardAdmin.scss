@@ -83,3 +83,28 @@ $white: #fefefe;
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .report-container {
+    width: 95%;
+    display: inline-block;
+    margin-right: 0px;
+
+    .report-wrapper {
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .search-holder {
+    .search-admin {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  #admin-modal {
+    margin-top: 20px;
+  }
+}

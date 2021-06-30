@@ -75,3 +75,12 @@ $white: #fefefe;
   color: red;
   font-size: 12px;
 }
+
+@media only screen and (max-width: 600px) {
+  .login-section {
+    .login-form {
+      height: 420px;
+      width: 65%;
+    }
+  }
+}
