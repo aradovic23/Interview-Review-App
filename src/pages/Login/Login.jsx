@@ -4,7 +4,7 @@ import { getToken } from "../../fetch/fetch";
 import { SiWebmoney } from "react-icons/si";
 import { Link } from "react-router-dom";
 
-const Login = ({ setToken, token }) => {
+const Login = ({ setToken }) => {
   const [password, setPassword] = useState("");
   const [userN, setUserN] = useState("");
   const [error, setError] = useState(false);

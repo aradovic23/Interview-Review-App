@@ -86,12 +86,12 @@ $white: #fefefe;
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1000px) {
   .modal-bg {
     height: 1200px;
     .modal-content {
-      height: 400px;
-      width: 300px;
+      height: auto;
+      width: 600px;
 
       .modal-image {
         img {
@@ -102,12 +102,12 @@ $white: #fefefe;
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 700px) {
   .modal-bg {
     height: 1200px;
     .modal-content {
-      height: auto;
-      width: 600px;
+      height: 400px;
+      width: 300px;
 
       .modal-image {
         img {

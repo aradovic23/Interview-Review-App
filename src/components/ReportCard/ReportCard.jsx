@@ -20,8 +20,6 @@ const ReportCard = ({ id, reports, avatar }) => {
     setShow(!show);
   };
 
-  console.log(prospectReport);
-
   return (
     <>
       {prospectReport.length ? (
@@ -34,7 +32,7 @@ const ReportCard = ({ id, reports, avatar }) => {
               </div>
               <div className="card-data">
                 <p>Interview Date:</p>
-                <span>{e?.interviewDate.slice(4, 16)}</span>
+                <span>{e.interviewDate?.slice(4, 16)}</span>
               </div>
               <div className="card-data">
                 <p>Status:</p>

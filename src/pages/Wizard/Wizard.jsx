@@ -1,25 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Wizard.scss";
 import Header from "../../components/Header/Header";
 import WizardCandidates from "../../components/WizardCandidates/WizardCandidates";
 import WizardCompanies from "../../components/WizardCompanies/WizardCompanies";
 import WizardForm from "../../components/WizardForm/WizardForm";
 import { Link } from "react-router-dom";
+import { CompanyContext } from "../../App/App";
 
-const Wizard = ({
-  candidates,
-  companies,
-  token,
-  setToken,
-  setReports,
-  reports,
-}) => {
+const Wizard = ({ candidates, token, setToken, setReports, reports }) => {
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchTermCompany, setSearchTermCompany] = useState("");
   const [report, setReport] = useState({});
   const [activeCandidateId, setActiveCandidateId] = useState(0);
   const [activeCompanyId, setActiveCompanyId] = useState(0);
+  const companies = useContext(CompanyContext);
 
   const getCandidates = (name, id) => {
     setReport({ ...report, candidateName: name, candidateId: id });

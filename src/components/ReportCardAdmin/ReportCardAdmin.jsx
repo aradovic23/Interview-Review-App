@@ -55,6 +55,7 @@ const ReportCardAdmin = ({ reports, setReports }) => {
               id={e.id}
               reports={reports}
               setReports={setReports}
+              key={e.id}
             />
           ))}
       </section>
