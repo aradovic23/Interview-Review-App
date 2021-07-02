@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./Wizard.scss";
 import Header from "../../components/Header/Header";
 import WizardCandidates from "../../components/WizardCandidates/WizardCandidates";
@@ -15,6 +15,24 @@ const Wizard = ({ candidates, token, setToken, setReports, reports }) => {
   const [activeCandidateId, setActiveCandidateId] = useState(0);
   const [activeCompanyId, setActiveCompanyId] = useState(0);
   const companies = useContext(CompanyContext);
+  const [filtered, setFiltered] = useState([]);
+  const [filteredCompanies, setFilteredCompanies] = useState([]);
+
+  useEffect(() => {
+    setFiltered(
+      candidates?.filter((e) =>
+        e.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [searchTerm, candidates]);
+
+  useEffect(() => {
+    setFilteredCompanies(
+      companies?.filter((e) =>
+        e.name.toLowerCase().includes(searchTermCompany.toLowerCase())
+      )
+    );
+  }, [searchTermCompany, companies]);
 
   const getCandidates = (name, id) => {
     setReport({ ...report, candidateName: name, candidateId: id });
@@ -94,30 +112,17 @@ const Wizard = ({ candidates, token, setToken, setReports, reports }) => {
                 />
               </div>
               <div className="candidates-list">
-                {candidates
-                  // eslint-disable-next-line array-callback-return
-                  .filter((value) => {
-                    if (searchTerm === "") {
-                      return value;
-                    } else if (
-                      value.name
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase())
-                    ) {
-                      return value;
-                    }
-                  })
-                  .map((e) => (
-                    <WizardCandidates
-                      getCandidates={getCandidates}
-                      key={e.id}
-                      name={e.name}
-                      email={e.email}
-                      id={e.id}
-                      activeCandidateId={activeCandidateId}
-                      setActiveCandidateId={setActiveCandidateId}
-                    />
-                  ))}
+                {filtered?.map((e) => (
+                  <WizardCandidates
+                    getCandidates={getCandidates}
+                    key={e.id}
+                    name={e.name}
+                    email={e.email}
+                    id={e.id}
+                    activeCandidateId={activeCandidateId}
+                    setActiveCandidateId={setActiveCandidateId}
+                  />
+                ))}
               </div>
             </div>
           )}
@@ -136,30 +141,17 @@ const Wizard = ({ candidates, token, setToken, setReports, reports }) => {
                 />
               </div>
               <div className="companies-list">
-                {companies
-                  // eslint-disable-next-line array-callback-return
-                  .filter((value) => {
-                    if (searchTermCompany === "") {
-                      return value;
-                    } else if (
-                      value.name
-                        ?.toLowerCase()
-                        .includes(searchTermCompany.toLowerCase())
-                    ) {
-                      return value;
-                    }
-                  })
-                  .map((e) => (
-                    <WizardCompanies
-                      getCompanies={getCompanies}
-                      key={e.id}
-                      name={e.name}
-                      email={e.email}
-                      id={e.id}
-                      activeCompanyId={activeCompanyId}
-                      setActiveCompanyId={setActiveCompanyId}
-                    />
-                  ))}
+                {filteredCompanies.map((e) => (
+                  <WizardCompanies
+                    getCompanies={getCompanies}
+                    key={e.id}
+                    name={e.name}
+                    email={e.email}
+                    id={e.id}
+                    activeCompanyId={activeCompanyId}
+                    setActiveCompanyId={setActiveCompanyId}
+                  />
+                ))}
               </div>
             </div>
           )}
@@ -180,7 +172,9 @@ const Wizard = ({ candidates, token, setToken, setReports, reports }) => {
             {page === 3 && (
               <>
                 <Link to="/admin">
-                  <button onClick={submitForm}>Submit</button>
+                  <button id="submit-btn" onClick={submitForm}>
+                    Submit
+                  </button>
                 </Link>
               </>
             )}

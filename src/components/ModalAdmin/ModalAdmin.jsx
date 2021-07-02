@@ -19,7 +19,7 @@ const ModalAdmin = ({
 
   return (
     <>
-      {show === true ? (
+      {show ? (
         <div className="modal-bg">
           <div className="modal-content">
             <div className="n-c">
